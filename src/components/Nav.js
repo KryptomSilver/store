@@ -11,6 +11,12 @@ import {
   faBars,
   faHome,
   faShoppingCart,
+  faSearch,
+  faUser,
+  faSignInAlt,
+  faBox,
+  faShoppingBag,
+  faStore,
 } from '@fortawesome/free-solid-svg-icons';
 const Nav = () => {
   const [menu, setMenu] = useState(false);
@@ -19,35 +25,54 @@ const Nav = () => {
   };
   return (
     <SafeAreaView>
+      {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity style={styles.menu} onPress={menubtn}>
-          <FontAwesomeIcon icon={faBars} size={20} color={'white'} />
+          <FontAwesomeIcon
+            icon={faBars}
+            style={menu ? styles.btnmenu : styles.btn}
+            size={20}
+            color={'white'}
+          />
         </TouchableOpacity>
-        <Text style={styles.texto}>Tienda online</Text>
+        <Text style={styles.texto}>Expresstore</Text>
         <TouchableOpacity style={styles.carro}>
-          <FontAwesomeIcon icon={faShoppingCart} size={20} color={'white'} />
+          <FontAwesomeIcon icon={faSearch} size={20} color={'white'} />
         </TouchableOpacity>
       </View>
+      {/* Menu desplegable */}
       <View style={menu ? styles.menuD : styles.menuDocultar}>
         <TouchableOpacity style={styles.menuDitem}>
           <FontAwesomeIcon icon={faHome} size={20} color={'white'} />
-
-          <Text style={styles.menuDtext}>Home</Text>
+          <Text style={styles.menuDtext}>Inicio</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuDitem}>
-          <FontAwesomeIcon icon={faHome} size={20} color={'white'} />
-
-          <Text style={styles.menuDtext}>Home</Text>
+          <FontAwesomeIcon icon={faUser} size={20} color={'white'} />
+          <Text style={styles.menuDtext}>Mi perfil</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuDitem}>
-          <FontAwesomeIcon icon={faHome} size={20} color={'white'} />
-
-          <Text style={styles.menuDtext}>Home</Text>
+          <FontAwesomeIcon icon={faSearch} size={20} color={'white'} />
+          <Text style={styles.menuDtext}>Buscador</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.menuDitem}>
-          <FontAwesomeIcon icon={faHome} size={20} color={'white'} />
-
-          <Text style={styles.menuDtext}>Home</Text>
+          <FontAwesomeIcon icon={faStore} size={20} color={'white'} />
+          <Text style={styles.menuDtext}>Catalogo de productos</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuDitem}>
+          <FontAwesomeIcon icon={faShoppingCart} size={20} color={'white'} />
+          <Text style={styles.menuDtext}>Carrito de compras</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuDitem}>
+          <FontAwesomeIcon icon={faShoppingBag} size={20} color={'white'} />
+          <Text style={styles.menuDtext}>Mis compras</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuDitem}>
+          <FontAwesomeIcon icon={faBox} size={20} color={'white'} />
+          <Text style={styles.menuDtext}>Pedidos</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menuDitem}>
+          <FontAwesomeIcon icon={faSignInAlt} size={20} color={'white'} />
+          <Text style={styles.menuDtext}>Registro</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -69,6 +94,7 @@ const styles = StyleSheet.create({
   texto: {
     color: 'white',
     fontSize: 22,
+    fontFamily: 'Lobster-Regular',
   },
   menu: {
     padding: 15,
@@ -80,15 +106,16 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
   },
+  btn:{},
   menuD: {
     position: 'absolute',
-    width: '70%',
+    width: '75%',
     height: 820,
     zIndex: 1,
-    backgroundColor: 'brown',
+    backgroundColor: '#4ca3d4',
     display: 'flex',
     alignItems: 'center',
-    paddingTop: 20,
+    paddingTop: 40,
     marginTop: 60,
   },
   menuDocultar: {
@@ -96,28 +123,33 @@ const styles = StyleSheet.create({
     width: '70%',
     height: 820,
     zIndex: 1,
-    backgroundColor: 'brown',
+    backgroundColor: '#54b4eb',
     display: 'flex',
     alignItems: 'center',
     paddingTop: 20,
     marginTop: 60,
     transform: [{translateX: -800}],
   },
+  btnmenu: {
+    transform: [{rotateZ: '90deg'}],
+  },
   menuDitem: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
     alignItems: 'center',
     color: 'white',
-    backgroundColor: 'gray',
-    width: '75%',
+    backgroundColor: '#316b8c',
+    width: '87%',
     height: 45,
-    marginTop: 10,
+    marginTop: 30,
+    padding: 10,
+    borderRadius: 5,
   },
   menuDtext: {
     color: 'white',
     paddingLeft: 10,
-    fontSize: 12,
+    fontSize: 15,
+    fontFamily: 'Roboto-Light',
   },
 });
 
