@@ -14,6 +14,7 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   useColorScheme,
   View,
 } from 'react-native';
@@ -25,6 +26,11 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
+import Nav from './src/components/Nav';
+import ListProduct from './src/components/ListProduct';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {faHome} from '@fortawesome/free-solid-svg-icons';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -39,6 +45,7 @@ const Section = ({children, title}): Node => {
         ]}>
         {title}
       </Text>
+
       <Text
         style={[
           styles.sectionDescription,
@@ -53,7 +60,7 @@ const Section = ({children, title}): Node => {
 };
 
 const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const isDarkMode = useColorScheme() === 'light';
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -61,31 +68,13 @@ const App: () => Node = () => {
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
+        <Nav />
+      <ScrollView style={backgroundStyle}>
+        
+
+        <ListProduct />
       </ScrollView>
+      
     </SafeAreaView>
   );
 };
@@ -107,6 +96,7 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
+  
 });
 
 export default App;
