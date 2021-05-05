@@ -1,7 +1,6 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, View} from 'react-native';
-import ListProduct from './ListProduct';
-import Nav from './Nav';
+
 
 const Home = () => {
   return (
