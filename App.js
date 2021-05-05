@@ -32,6 +32,7 @@ import ListProduct from './src/components/ListProduct';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from './src/components/Home';
+import Cart from './src/components/Cart';
 
 const Stack = createStackNavigator();
 
@@ -49,10 +50,13 @@ const App: () => Node = () => {
           headerShown: false,
         }}>
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Cart" component={Cart} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
+
+
 
 const styles = StyleSheet.create({
   sectionContainer: {

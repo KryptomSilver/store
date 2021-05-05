@@ -18,11 +18,13 @@ import {
   faShoppingBag,
   faStore,
 } from '@fortawesome/free-solid-svg-icons';
-const Nav = () => {
+import {useNavigation} from '@react-navigation/core';
+const Nav = ({titulo}) => {
   const [menu, setMenu] = useState(false);
   const menubtn = () => {
     setMenu(current => !current);
   };
+  const navigation = useNavigation();
   return (
     <SafeAreaView>
       {/* Header */}
@@ -35,14 +37,16 @@ const Nav = () => {
             color={'white'}
           />
         </TouchableOpacity>
-        <Text style={styles.texto}>Expresstore</Text>
+        <Text style={styles.texto}>{titulo}</Text>
         <TouchableOpacity style={styles.carro}>
           <FontAwesomeIcon icon={faSearch} size={20} color={'white'} />
         </TouchableOpacity>
       </View>
       {/* Menu desplegable */}
       <View style={menu ? styles.menuD : styles.menuDocultar}>
-        <TouchableOpacity style={styles.menuDitem}>
+        <TouchableOpacity
+          style={styles.menuDitem}
+          onPress={() => navigation.navigate('Home')}>
           <FontAwesomeIcon icon={faHome} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Inicio</Text>
         </TouchableOpacity>
@@ -58,7 +62,9 @@ const Nav = () => {
           <FontAwesomeIcon icon={faStore} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Catalogo de productos</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuDitem}>
+        <TouchableOpacity
+          style={styles.menuDitem}
+          onPress={() => navigation.navigate('Cart')}>
           <FontAwesomeIcon icon={faShoppingCart} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Carrito de compras</Text>
         </TouchableOpacity>
@@ -106,7 +112,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
   },
-  btn:{},
+  btn: {},
   menuD: {
     position: 'absolute',
     width: '75%',

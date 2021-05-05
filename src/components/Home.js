@@ -6,7 +6,7 @@ import Nav from './Nav';
 const Home = () => {
   return (
     <SafeAreaView>
-      <Nav />
+      <Nav titulo="Expresstore"/>
       <ScrollView>
         <ListProduct />
       </ScrollView>
