@@ -17,6 +17,7 @@ import {
   faBox,
   faShoppingBag,
   faStore,
+  faCar,
 } from '@fortawesome/free-solid-svg-icons';
 import {useNavigation} from '@react-navigation/core';
 const Nav = ({titulo}) => {
@@ -38,8 +39,10 @@ const Nav = ({titulo}) => {
           />
         </TouchableOpacity>
         <Text style={styles.texto}>{titulo}</Text>
-        <TouchableOpacity style={styles.carro}>
-          <FontAwesomeIcon icon={faSearch} size={20} color={'white'} />
+        <TouchableOpacity
+          style={styles.carro}
+          onPress={() => navigation.navigate('Cart')}>
+          <FontAwesomeIcon icon={faShoppingCart} size={20} color={'white'} />
         </TouchableOpacity>
       </View>
       {/* Menu desplegable */}
@@ -50,7 +53,9 @@ const Nav = ({titulo}) => {
           <FontAwesomeIcon icon={faHome} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Inicio</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuDitem}>
+        <TouchableOpacity
+          style={styles.menuDitem}
+          onPress={() => navigation.navigate('Perfil')}>
           <FontAwesomeIcon icon={faUser} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Mi perfil</Text>
         </TouchableOpacity>
@@ -79,6 +84,12 @@ const Nav = ({titulo}) => {
         <TouchableOpacity style={styles.menuDitem}>
           <FontAwesomeIcon icon={faSignInAlt} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Registro</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.menuDitem}
+          onPress={() => navigation.navigate('LoginView')}>
+          <FontAwesomeIcon icon={faSignInAlt} size={20} color={'white'} />
+          <Text style={styles.menuDtext}>Login</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

@@ -3,7 +3,7 @@ import { ImageBackground, StyleSheet, Text, View } from "react-native";
 
 const image = { uri: "https://1.bp.blogspot.com/-H9eEQtvg550/T03OFJfOOQI/AAAAAAAAHhQ/AAw7nYGzMX0/s1600/455.png" };
 
-const App = () => (
+const Inicio = () => (
   <View style={styles.container}>
     <ImageBackground source={image} style={styles.image}>
       <Text style={styles.text}>Acerca de Nosotros</Text>
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
 }
 });
 
-export default App;
+export default Inicio;

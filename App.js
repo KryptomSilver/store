@@ -33,6 +33,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from './src/components/Home';
 import Cart from './src/components/Cart';
+import Inicio from './src/components/Inicio';
+import Perfil from './src/components/Perfil';
+import Login from './src/components/Login';
 
 const Stack = createStackNavigator();
 
@@ -51,12 +54,13 @@ const App: () => Node = () => {
         }}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Cart" component={Cart} />
+        <Stack.Screen name="Inicio" component={Inicio} />
+        <Stack.Screen name="LoginView" component={Login} />
+        <Stack.Screen name="Perfil" component={Perfil} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
-
-
 
 const styles = StyleSheet.create({
   sectionContainer: {
