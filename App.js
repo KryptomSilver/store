@@ -36,6 +36,7 @@ import Cart from './src/components/Cart';
 import Inicio from './src/components/Inicio';
 import Perfil from './src/components/Perfil';
 import Login from './src/components/Login';
+import Pedidos from './src/components/Pedidos';
 
 const Stack = createStackNavigator();
 
@@ -57,6 +58,7 @@ const App: () => Node = () => {
         <Stack.Screen name="Inicio" component={Inicio} />
         <Stack.Screen name="LoginView" component={Login} />
         <Stack.Screen name="Perfil" component={Perfil} />
+        <Stack.Screen name="Pedidos" component={Pedidos} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -77,7 +77,7 @@ const Nav = ({titulo}) => {
           <FontAwesomeIcon icon={faShoppingBag} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Mis compras</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuDitem}>
+        <TouchableOpacity style={styles.menuDitem} onPress={() => navigation.navigate('Pedidos')}>
           <FontAwesomeIcon icon={faBox} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Pedidos</Text>
         </TouchableOpacity>
