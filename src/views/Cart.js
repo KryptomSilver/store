@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import Nav from './Nav';
+import Nav from '../layout/Nav';
 
 const Cart = () => {
   return (

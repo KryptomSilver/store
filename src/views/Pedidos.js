@@ -9,7 +9,7 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
-import Nav from './Nav';
+import Nav from '../layout/Nav';
 
 const Pedidos = () => {
   return (

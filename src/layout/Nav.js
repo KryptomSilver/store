@@ -17,7 +17,7 @@ import {
   faBox,
   faShoppingBag,
   faStore,
-  faCar,
+  faQuestion,
 } from '@fortawesome/free-solid-svg-icons';
 import {useNavigation} from '@react-navigation/core';
 const Nav = ({titulo}) => {
@@ -77,11 +77,15 @@ const Nav = ({titulo}) => {
           <FontAwesomeIcon icon={faShoppingBag} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Mis compras</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuDitem} onPress={() => navigation.navigate('Pedidos')}>
+        <TouchableOpacity
+          style={styles.menuDitem}
+          onPress={() => navigation.navigate('Pedidos')}>
           <FontAwesomeIcon icon={faBox} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Pedidos</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuDitem}>
+        <TouchableOpacity
+          style={styles.menuDitem}
+          onPress={() => navigation.navigate('Registro')}>
           <FontAwesomeIcon icon={faSignInAlt} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Registro</Text>
         </TouchableOpacity>
@@ -90,6 +94,12 @@ const Nav = ({titulo}) => {
           onPress={() => navigation.navigate('LoginView')}>
           <FontAwesomeIcon icon={faSignInAlt} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.menuDitem}
+          onPress={() => navigation.navigate('AboutUs')}>
+          <FontAwesomeIcon icon={faQuestion} size={20} color={'white'} />
+          <Text style={styles.menuDtext}>Nosotros</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -132,7 +142,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#4ca3d4',
     display: 'flex',
     alignItems: 'center',
-    paddingTop: 40,
     marginTop: 60,
   },
   menuDocultar: {
@@ -143,7 +152,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#54b4eb',
     display: 'flex',
     alignItems: 'center',
-    paddingTop: 20,
     marginTop: 60,
     transform: [{translateX: -800}],
   },
@@ -158,7 +166,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#316b8c',
     width: '87%',
     height: 45,
-    marginTop: 30,
+    marginTop: 25,
     padding: 10,
     borderRadius: 5,
   },

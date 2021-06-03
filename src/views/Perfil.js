@@ -1,21 +1,15 @@
-import { faUserCircle} from '@fortawesome/free-solid-svg-icons';
+import {faUserCircle} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  Image,
-  TextInput,
-  SafeAreaView,
-} from 'react-native';
-import Nav from './Nav';
+import {Text, View, StyleSheet, TextInput, SafeAreaView} from 'react-native';
+import style from '../assets/styles/style';
+import Nav from '../layout/Nav';
 
-const Perfil = prop => {
+const Perfil = () => {
   return (
     <SafeAreaView>
-      <Nav titulo="Perfil"/>
-      <View style={[{marginTop: 60}, styles.contenedor]}>
+      <Nav titulo="Perfil" />
+      <View style={style.contenedor}>
         <View style={styles.logo}>
           <FontAwesomeIcon icon={faUserCircle} size={100} color={'black'} />
         </View>
@@ -25,7 +19,9 @@ const Perfil = prop => {
           <TextInput
             placeholder="Ayeza Zamudio"
             style={styles.input}
-            placeholderTextColor={'grey'}
+            placeholderTextColor="#bfbfbf"
+            editable={false}
+            selectTextOnFocus={false}
           />
         </View>
         <View style={styles.inputgroup}>
@@ -33,7 +29,9 @@ const Perfil = prop => {
           <TextInput
             placeholder="Ayeza Elizabeth Zamudio Comino"
             style={styles.input}
-            placeholderTextColor={'grey'}
+            placeholderTextColor="#bfbfbf"
+            editable={false}
+            selectTextOnFocus={false}
           />
         </View>
         <View style={styles.inputgroup}>
@@ -41,7 +39,9 @@ const Perfil = prop => {
           <TextInput
             placeholder="ayezahmvc14@gmail.com"
             style={styles.input}
-            placeholderTextColor={'grey'}
+            placeholderTextColor="#bfbfbf"
+            editable={false}
+            selectTextOnFocus={false}
           />
         </View>
         <View style={styles.inputgroup}>
@@ -49,7 +49,9 @@ const Perfil = prop => {
           <TextInput
             placeholder="ayeza123"
             style={styles.input}
-            placeholderTextColor={'grey'}
+            placeholderTextColor="#bfbfbf"
+            editable={false}
+            selectTextOnFocus={false}
           />
         </View>
       </View>
@@ -78,7 +80,7 @@ const styles = StyleSheet.create({
   },
   texto: {
     fontFamily: 'Roboto-Light',
-    fontSize:18,
+    fontSize: 18,
     paddingBottom: 10,
   },
 });
