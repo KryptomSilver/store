@@ -1,16 +1,16 @@
 import React from 'react';
 import {SafeAreaView, ScrollView, View} from 'react-native';
-import ListProduct from './ListProduct';
+import Registro from './Registro';
 import Nav from './Nav';
 
 
 const Home = () => {
   return (
     <SafeAreaView>
-      <Nav titulo="Expresstore"/>
-      <ScrollView>
-        <ListProduct />
-      </ScrollView>
+      <Nav titulo="Registro"/>
+      
+        <Registro />
+    
     </SafeAreaView>
   );
 };
