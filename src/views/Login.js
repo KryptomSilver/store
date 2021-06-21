@@ -1,118 +1,78 @@
-
+import {faUserCircle} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {useNavigation} from '@react-navigation/core';
 import React from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   TextInput,
   TouchableHighlight,
   Image,
   TouchableOpacity,
+  SafeAreaView,
 } from 'react-native';
+import style from '../assets/styles/style';
 
 const Login = () => {
   const navigation = useNavigation();
   return (
-    <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <Image
-          style={styles.inputIcon}
-          source={{uri: 'https://png.icons8.com/message/ultraviolet/50/3498db'}}
-        />
-        <TextInput
-          style={styles.inputs}
-          placeholder="Email"
-          keyboardType="email-address"
-          underlineColorAndroid="transparent"
-          onChangeText={email => this.setState({email})}
-        />
+    <SafeAreaView>
+      <View style={[{marginTop: 120}, style.contenedorLogin]}>
+        <View style={style.logo}>
+          <FontAwesomeIcon icon={faUserCircle} size={100} color={'black'} />
+        </View>
+        <View style={style.inputgroup}>
+          <Text style={style.texto}>Nombre usuario:</Text>
+          <TextInput
+            value=""
+            placeholder={'Ingresa tu Nombre de usuario'}
+            placeholderTextColor="#bfbfbf"
+            style={style.input}
+          />
+        </View>
+        <View style={style.inputgroup}>
+          <Text style={style.texto}>Contraseña:</Text>
+          <TextInput
+            value=""
+            placeholder={'Ingresa tu contraseña'}
+            placeholderTextColor="#bfbfbf"
+            style={style.input}
+          />
+        </View>
+        <View
+          style={[
+            style.inputgroup,
+            {
+              marginTop: 20,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            },
+          ]}>
+          <TouchableOpacity
+            style={[
+              style.btn,
+              {display: 'flex', justifyContent: 'center', alignItems: 'center'},
+            ]}>
+            <Text style={[style.roboto_l, {fontSize: 18, color: 'white'}]}>
+              Login
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={[style.inputgroup, {marginTop: 5}]}>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={[
+              {display: 'flex', justifyContent: 'center', alignItems: 'center'},
+            ]}>
+            <Text style={[style.roboto_l, {fontSize: 15, color: '#000'}]}>
+              Regresar
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-
-      <View style={styles.inputContainer}>
-        <Image
-          style={styles.inputIcon}
-          source={{uri: 'https://png.icons8.com/key-2/ultraviolet/50/3498db'}}
-        />
-        <TextInput
-          style={styles.inputs}
-          placeholder="Password"
-          secureTextEntry={true}
-          underlineColorAndroid="transparent"
-          onChangeText={password => this.setState({password})}
-        />
-      </View>
-
-      <TouchableHighlight
-        style={[styles.buttonContainer, styles.loginButton]}
-        onPress={() => this.onClickListener('login')}>
-        <Text style={styles.loginText}>Login</Text>
-      </TouchableHighlight>
-
-      <TouchableHighlight
-        style={styles.buttonContainer}
-        onPress={() => this.onClickListener('restore_password')}>
-        <Text>Olvidó la contraseña?</Text>
-      </TouchableHighlight>
-
-      <TouchableHighlight
-        style={styles.buttonContainer}
-        onPress={() => this.onClickListener('register')}>
-        <Text>Registrarse</Text>
-      </TouchableHighlight>
-      <TouchableOpacity
-        style={styles.menuDitem}
-        onPress={() => navigation.navigate('Home')}>
-        <Text style={styles.menuDtext}>Regresar</Text>
-      </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#DCDCDC',
-  },
-  inputContainer: {
-    borderBottomColor: '#F5FCFF',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 30,
-    borderBottomWidth: 1,
-    width: 250,
-    height: 45,
-    marginBottom: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  inputs: {
-    height: 45,
-    marginLeft: 16,
-    borderBottomColor: '#c67ace',
-    flex: 1,
-  },
-  inputIcon: {
-    width: 30,
-    height: 30,
-    marginLeft: 15,
-    justifyContent: 'center',
-  },
-  buttonContainer: {
-    height: 45,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-    width: 250,
-    borderRadius: 30,
-  },
-  loginButton: {
-    backgroundColor: '#e6c4c0',
-  },
-  loginText: {
-    color: 'white',
-  },
-});
 
 export default Login;

@@ -73,15 +73,11 @@ const Nav = ({titulo}) => {
           <FontAwesomeIcon icon={faShoppingCart} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Carrito de compras</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuDitem}>
-          <FontAwesomeIcon icon={faShoppingBag} size={20} color={'white'} />
-          <Text style={styles.menuDtext}>Mis compras</Text>
-        </TouchableOpacity>
         <TouchableOpacity
           style={styles.menuDitem}
-          onPress={() => navigation.navigate('Pedidos')}>
-          <FontAwesomeIcon icon={faBox} size={20} color={'white'} />
-          <Text style={styles.menuDtext}>Pedidos</Text>
+          onPress={() => navigation.navigate('Purchases')}>
+          <FontAwesomeIcon icon={faShoppingBag} size={20} color={'white'} />
+          <Text style={styles.menuDtext}>Mis compras</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.menuDitem}
@@ -116,6 +112,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: 1,
     width: '100%',
+    
   },
 
   texto: {

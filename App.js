@@ -20,7 +20,7 @@ import Cart from './src/views/Cart';
 import AboutUs from './src/views/AboutUs';
 import Perfil from './src/views/Perfil';
 import Login from './src/views/Login';
-import Pedidos from './src/views/Pedidos';
+import Purchases from './src/views/Purchases';
 import Home from './src/views/Home';
 import Registro from './src/views/Registro';
 
@@ -44,7 +44,7 @@ const App = () => {
         <Stack.Screen name="AboutUs" component={AboutUs} />
         <Stack.Screen name="LoginView" component={Login} />
         <Stack.Screen name="Perfil" component={Perfil} />
-        <Stack.Screen name="Pedidos" component={Pedidos} />
+        <Stack.Screen name="Purchases" component={Purchases} />
         <Stack.Screen name="Registro" component={Registro} />
 
       </Stack.Navigator>
