@@ -171,5 +171,15 @@ const style = StyleSheet.create({
     borderColor: 'gray',
     backgroundColor: '#fff',
   },
+  footerCart: {
+    borderWidth: 0.2,
+    width: '100%',
+    borderColor: 'gray',
+    backgroundColor: '#fff',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
 });
 export default style;

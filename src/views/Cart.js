@@ -15,7 +15,7 @@ const Cart = () => {
   return (
     <SafeAreaView>
       <Nav titulo="Carrito de Compras" />
-      <ScrollView style={{marginTop: 60, backgroundColor: '#e6e6e6'}}>
+      <ScrollView style={{marginTop: 60,marginBottom:21, backgroundColor: '#e6e6e6'}}>
         <View style={style.itemCard}>
           <View style={styles.row}>
             <Image
@@ -111,7 +111,47 @@ const Cart = () => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.contenedor}>
+        <View style={style.itemCard}>
+          <View style={styles.row}>
+            <Image
+              source={{
+                uri:
+                  'https://cdn.shopify.com/s/files/1/1365/5917/products/labial-mate-venecia-bissu_1200x.jpg?v=1612896448',
+              }}
+              style={styles.productimagen}
+            />
+            <Text>Labial Rosa</Text>
+            <Text>$ 120.00</Text>
+          </View>
+          <View style={style.linea}></View>
+          <View style={styles.row}>
+            <TouchableOpacity>
+              <Text>Eliminar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={style.itemCard}>
+          <View style={styles.row}>
+            <Image
+              source={{
+                uri:
+                  'https://cdn.shopify.com/s/files/1/1365/5917/products/labial-mate-venecia-bissu_1200x.jpg?v=1612896448',
+              }}
+              style={styles.productimagen}
+            />
+            <Text>Labial Rosa</Text>
+            <Text>$ 120.00</Text>
+          </View>
+          <View style={style.linea}></View>
+          <View style={styles.row}>
+            <TouchableOpacity>
+              <Text>Eliminar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      
+      </ScrollView>
+      <View style={style.footerCart}>
           <View style={styles.total}>
             <Text>Envio:</Text>
             <Text>$ 100.00</Text>
@@ -129,19 +169,10 @@ const Cart = () => {
             </TouchableOpacity>
           </View>
         </View>
-      </ScrollView>
     </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
-  contenedor: {
-    marginBottom: 20,
-    borderWidth: 0.2,
-    width: '100%',
-    borderColor: 'gray',
-    backgroundColor: '#fff',
-    zIndex: 2,
-  },
   row: {
     display: 'flex',
     flexDirection: 'row',
