@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -17,15 +17,43 @@ import {
   faBox,
   faShoppingBag,
   faStore,
-  faCar,
+  faQuestion,
+  faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import {useNavigation} from '@react-navigation/core';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const Nav = ({titulo}) => {
   const [menu, setMenu] = useState(false);
+  const navigation = useNavigation();
   const menubtn = () => {
     setMenu(current => !current);
   };
-  const navigation = useNavigation();
+  const [auth, setAuth] = useState(false);
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', async () => {
+      try {
+        const value = await AsyncStorage.getItem('@token');
+        if (value !== null) {
+          setAuth(true);
+        }
+      } catch (e) {
+        // error reading value
+      }
+    });
+    // Return the function to unsubscribe from the event so it gets removed on unmount
+    return unsubscribe;
+  }, [navigation]);
+  const cerrarSesion = async () => {
+    try {
+      await AsyncStorage.removeItem('@token');
+      setAuth(false);
+      navigation.navigate('Home');
+    } catch (e) {
+      console.log(e);
+    }
+    console.log('Done.');
+  };
   return (
     <SafeAreaView>
       {/* Header */}
@@ -53,12 +81,14 @@ const Nav = ({titulo}) => {
           <FontAwesomeIcon icon={faHome} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Inicio</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.menuDitem}
-          onPress={() => navigation.navigate('Perfil')}>
-          <FontAwesomeIcon icon={faUser} size={20} color={'white'} />
-          <Text style={styles.menuDtext}>Mi perfil</Text>
-        </TouchableOpacity>
+        {auth ? (
+          <TouchableOpacity
+            style={styles.menuDitem}
+            onPress={() => navigation.navigate('Profile')}>
+            <FontAwesomeIcon icon={faUser} size={20} color={'white'} />
+            <Text style={styles.menuDtext}>Perfil</Text>
+          </TouchableOpacity>
+        ) : null}
         <TouchableOpacity style={styles.menuDitem}>
           <FontAwesomeIcon icon={faSearch} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Buscador</Text>
@@ -73,15 +103,15 @@ const Nav = ({titulo}) => {
           <FontAwesomeIcon icon={faShoppingCart} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Carrito de compras</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuDitem}>
+        <TouchableOpacity
+          style={styles.menuDitem}
+          onPress={() => navigation.navigate('Purchases')}>
           <FontAwesomeIcon icon={faShoppingBag} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Mis compras</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.menuDitem} onPress={() => navigation.navigate('Pedidos')}>
-          <FontAwesomeIcon icon={faBox} size={20} color={'white'} />
-          <Text style={styles.menuDtext}>Pedidos</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.menuDitem}>
+        <TouchableOpacity
+          style={styles.menuDitem}
+          onPress={() => navigation.navigate('Registro')}>
           <FontAwesomeIcon icon={faSignInAlt} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Registro</Text>
         </TouchableOpacity>
@@ -90,6 +120,20 @@ const Nav = ({titulo}) => {
           onPress={() => navigation.navigate('LoginView')}>
           <FontAwesomeIcon icon={faSignInAlt} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Login</Text>
+        </TouchableOpacity>
+        {auth ? (
+          <TouchableOpacity
+            style={styles.menuDitem}
+            onPress={() => cerrarSesion()}>
+            <FontAwesomeIcon icon={faSignOutAlt} size={20} color={'white'} />
+            <Text style={styles.menuDtext}>Cerrar Sesión</Text>
+          </TouchableOpacity>
+        ) : null}
+        <TouchableOpacity
+          style={styles.menuDitem}
+          onPress={() => navigation.navigate('AboutUs')}>
+          <FontAwesomeIcon icon={faQuestion} size={20} color={'white'} />
+          <Text style={styles.menuDtext}>Nosotros</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -132,7 +176,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#4ca3d4',
     display: 'flex',
     alignItems: 'center',
-    paddingTop: 40,
     marginTop: 60,
   },
   menuDocultar: {
@@ -143,7 +186,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#54b4eb',
     display: 'flex',
     alignItems: 'center',
-    paddingTop: 20,
     marginTop: 60,
     transform: [{translateX: -800}],
   },
@@ -158,7 +200,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#316b8c',
     width: '87%',
     height: 45,
-    marginTop: 30,
+    marginTop: 25,
     padding: 10,
     borderRadius: 5,
   },
