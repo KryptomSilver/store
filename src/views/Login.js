@@ -1,7 +1,7 @@
 import {faUserCircle} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {useNavigation} from '@react-navigation/core';
-import React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, {useContext, useEffect, useState} from 'react';
 import {
   Text,
   View,
@@ -12,9 +12,25 @@ import {
   SafeAreaView,
 } from 'react-native';
 import style from '../assets/styles/style';
+import clienteAxios from '../config/axios';
 
-const Login = () => {
-  const navigation = useNavigation();
+const Login = ({navigation}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const onSubmit = async () => {
+    const datos = {
+      email,
+      password,
+    };
+    try {
+      const respuesta = await clienteAxios.post('/auth', datos);
+      await AsyncStorage.setItem('@token', respuesta.data.token);
+      navigation.navigate('Home');
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <SafeAreaView>
       <View style={[{marginTop: 120}, style.contenedorLogin]}>
@@ -24,19 +40,22 @@ const Login = () => {
         <View style={style.inputgroup}>
           <Text style={style.texto}>Nombre usuario:</Text>
           <TextInput
-            value=""
+            value={email}
             placeholder={'Ingresa tu Nombre de usuario'}
             placeholderTextColor="#bfbfbf"
             style={style.input}
+            onChangeText={setEmail}
           />
         </View>
         <View style={style.inputgroup}>
           <Text style={style.texto}>Contraseña:</Text>
           <TextInput
-            value=""
+            value={password}
             placeholder={'Ingresa tu contraseña'}
             placeholderTextColor="#bfbfbf"
             style={style.input}
+            onChangeText={setPassword}
+            secureTextEntry={true}
           />
         </View>
         <View
@@ -53,7 +72,8 @@ const Login = () => {
             style={[
               style.btn,
               {display: 'flex', justifyContent: 'center', alignItems: 'center'},
-            ]}>
+            ]}
+            onPress={() => onSubmit()}>
             <Text style={[style.roboto_l, {fontSize: 18, color: 'white'}]}>
               Login
             </Text>

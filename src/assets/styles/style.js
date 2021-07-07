@@ -22,6 +22,7 @@ const style = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 4,
     padding: 15,
+    color: "#000"
   },
   //Form group
   inputgroup: {
@@ -85,6 +86,7 @@ const style = StyleSheet.create({
   rowitem: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent:'center'
   },
   contenedorproduct: {
     backgroundColor: '#e6e6e6',

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -18,14 +18,42 @@ import {
   faShoppingBag,
   faStore,
   faQuestion,
+  faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import {useNavigation} from '@react-navigation/core';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const Nav = ({titulo}) => {
   const [menu, setMenu] = useState(false);
+  const navigation = useNavigation();
   const menubtn = () => {
     setMenu(current => !current);
   };
-  const navigation = useNavigation();
+  const [auth, setAuth] = useState(false);
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', async () => {
+      try {
+        const value = await AsyncStorage.getItem('@token');
+        if (value !== null) {
+          setAuth(true);
+        }
+      } catch (e) {
+        // error reading value
+      }
+    });
+    // Return the function to unsubscribe from the event so it gets removed on unmount
+    return unsubscribe;
+  }, [navigation]);
+  const cerrarSesion = async () => {
+    try {
+      await AsyncStorage.removeItem('@token');
+      setAuth(false);
+      navigation.navigate('Home');
+    } catch (e) {
+      console.log(e);
+    }
+    console.log('Done.');
+  };
   return (
     <SafeAreaView>
       {/* Header */}
@@ -53,12 +81,14 @@ const Nav = ({titulo}) => {
           <FontAwesomeIcon icon={faHome} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Inicio</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.menuDitem}
-          onPress={() => navigation.navigate('Perfil')}>
-          <FontAwesomeIcon icon={faUser} size={20} color={'white'} />
-          <Text style={styles.menuDtext}>Mi perfil</Text>
-        </TouchableOpacity>
+        {auth ? (
+          <TouchableOpacity
+            style={styles.menuDitem}
+            onPress={() => navigation.navigate('Profile')}>
+            <FontAwesomeIcon icon={faUser} size={20} color={'white'} />
+            <Text style={styles.menuDtext}>Perfil</Text>
+          </TouchableOpacity>
+        ) : null}
         <TouchableOpacity style={styles.menuDitem}>
           <FontAwesomeIcon icon={faSearch} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Buscador</Text>
@@ -91,6 +121,14 @@ const Nav = ({titulo}) => {
           <FontAwesomeIcon icon={faSignInAlt} size={20} color={'white'} />
           <Text style={styles.menuDtext}>Login</Text>
         </TouchableOpacity>
+        {auth ? (
+          <TouchableOpacity
+            style={styles.menuDitem}
+            onPress={() => cerrarSesion()}>
+            <FontAwesomeIcon icon={faSignOutAlt} size={20} color={'white'} />
+            <Text style={styles.menuDtext}>Cerrar Sesión</Text>
+          </TouchableOpacity>
+        ) : null}
         <TouchableOpacity
           style={styles.menuDitem}
           onPress={() => navigation.navigate('AboutUs')}>
@@ -112,7 +150,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: 1,
     width: '100%',
-    
   },
 
   texto: {

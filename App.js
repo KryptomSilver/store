@@ -23,6 +23,7 @@ import Login from './src/views/Login';
 import Purchases from './src/views/Purchases';
 import Home from './src/views/Home';
 import Registro from './src/views/Registro';
+import Profile from './src/views/Profile';
 
 const Stack = createStackNavigator();
 
@@ -43,10 +44,9 @@ const App = () => {
         <Stack.Screen name="Cart" component={Cart} />
         <Stack.Screen name="AboutUs" component={AboutUs} />
         <Stack.Screen name="LoginView" component={Login} />
-        <Stack.Screen name="Perfil" component={Perfil} />
+        <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Purchases" component={Purchases} />
         <Stack.Screen name="Registro" component={Registro} />
-
       </Stack.Navigator>
     </NavigationContainer>
   );
